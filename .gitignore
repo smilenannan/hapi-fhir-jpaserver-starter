@@ -158,3 +158,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Eclipse related files
+.classpath
+.project
+
+# Secret information
+config/

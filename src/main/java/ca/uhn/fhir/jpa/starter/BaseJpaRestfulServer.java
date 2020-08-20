@@ -54,6 +54,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import ca.uhn.fhir.jpa.starter.CustomizedAuthorizationInterceptor;
+
 public class BaseJpaRestfulServer extends RestfulServer {
 
   private static final long serialVersionUID = 1L;
@@ -328,6 +330,7 @@ public class BaseJpaRestfulServer extends RestfulServer {
       registerProviders(appCtx.getBean(PartitionManagementProvider.class));
     }
 
+     registerInterceptor(new CustomizedAuthorizationInterceptor());
   }
 
 }
