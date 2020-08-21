@@ -25,13 +25,12 @@ public class CustomizedAuthorizationInterceptor extends AuthorizationInterceptor
    public List<IAuthRule> buildRuleList(RequestDetails theRequestDetails) {
 	  PublicKey key = null;
 	  try {
-		key = PublicKeyReader.get("config/jwt/public_key.der");
-
+		  key = PublicKeyReader.get("config/jwt/public_key.der");
 	  } catch (Exception ex) {
-		ex.printStackTrace();
+		  ex.printStackTrace();
 	  }
 	  String authHeader = theRequestDetails.getHeader("Authorization");
-	  if (authHeader==null) {
+	  if (authHeader=="" || authHeader==null) {
 		  throw new AuthenticationException("Missing Authorization header");
 	  }
 	  String jwsString = authHeader.split(" ")[1];
