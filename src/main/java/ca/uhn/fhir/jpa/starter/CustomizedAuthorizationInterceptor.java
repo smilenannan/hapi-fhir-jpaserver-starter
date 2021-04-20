@@ -45,7 +45,10 @@ public class CustomizedAuthorizationInterceptor extends AuthorizationInterceptor
 	  }
 	  //TODO: Add if according role value in JWT payload
 	  return new RuleBuilder()
+			  .deny().operation().named("$partition-management-create-partition").atAnyLevel().andAllowAllResponses().andThen()
+			  .deny().operation().named("$partition-management-update-partition").atAnyLevel().andAllowAllResponses().andThen()
+			  .deny().operation().named("$partition-management-delete-partition").atAnyLevel().andAllowAllResponses().andThen()
 			  .allowAll()
-	          .build();
+			  .build();
    }
 }

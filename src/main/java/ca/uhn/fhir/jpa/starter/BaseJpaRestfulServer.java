@@ -55,6 +55,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import ca.uhn.fhir.jpa.starter.CustomizedAuthorizationInterceptor;
+import ca.uhn.fhir.jpa.starter.CustomHeaderBasedPartitionInterceptor;
 
 public class BaseJpaRestfulServer extends RestfulServer {
 
@@ -325,8 +326,9 @@ public class BaseJpaRestfulServer extends RestfulServer {
 
     // Partitioning
     if (HapiProperties.getPartitioningMultitenancyEnabled()) {
-      registerInterceptor(new RequestTenantPartitionInterceptor());
-      setTenantIdentificationStrategy(new UrlBaseTenantIdentificationStrategy());
+//      registerInterceptor(new RequestTenantPartitionInterceptor());
+      registerInterceptor(new CustomHeaderBasedPartitionInterceptor());
+//      setTenantIdentificationStrategy(new UrlBaseTenantIdentificationStrategy());
       registerProviders(appCtx.getBean(PartitionManagementProvider.class));
     }
 
