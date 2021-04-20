@@ -22,6 +22,10 @@ public class CustomHeaderBasedPartitionInterceptor {
 		String payloadString = new String(decoder.decode(chunks[1]));
 		JSONObject payload = new JSONObject(payloadString);
 		Integer partitionId = payload.getInt("group_id");
+//		String resourceName = theRequestDetails.getResourceName();
+//		if (resourceName.equals("CodeSystem")) {
+//			return RequestPartitionId.defaultPartition();
+//		}
 		return RequestPartitionId.fromPartitionId(partitionId);
 	}
 
@@ -34,6 +38,10 @@ public class CustomHeaderBasedPartitionInterceptor {
 		String payloadString = new String(decoder.decode(chunks[1]));
 		JSONObject payload = new JSONObject(payloadString);
 		Integer partitionId = payload.getInt("group_id");
+//		String resourceName = theRequestDetails.getResourceName();
+//		if (resourceName.equals("CodeSystem")) {
+//			return RequestPartitionId.defaultPartition();
+//		}
 		return RequestPartitionId.fromPartitionId(partitionId);
 	}
 
