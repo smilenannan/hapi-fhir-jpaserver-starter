@@ -43,12 +43,21 @@ public class CustomizedAuthorizationInterceptor extends AuthorizationInterceptor
 	  }	catch (JwtException ex) {
 		  throw new AuthenticationException("Invalid Authorization header value");
 	  }
-	  //TODO: Add if according role value in JWT payload
+	  
+	  boolean isGlobalAdmin = jws.getBody().get("global_admin", Boolean.class);
+	  
+	  if (isGlobalAdmin) {
+		  return new RuleBuilder()
+				  .allowAll()
+				  .build();
+	  }
+	  
 	  return new RuleBuilder()
-			  .deny().operation().named("$partition-management-create-partition").atAnyLevel().andAllowAllResponses().andThen()
-			  .deny().operation().named("$partition-management-update-partition").atAnyLevel().andAllowAllResponses().andThen()
-			  .deny().operation().named("$partition-management-delete-partition").atAnyLevel().andAllowAllResponses().andThen()
-			  .allowAll()
-			  .build();
+		  .deny().operation().named("$partition-management-create-partition").atAnyLevel().andAllowAllResponses().andThen()
+		  .deny().operation().named("$partition-management-update-partition").atAnyLevel().andAllowAllResponses().andThen()
+		  .deny().operation().named("$partition-management-delete-partition").atAnyLevel().andAllowAllResponses().andThen()
+		  .allowAll()
+		  .build();
+	  
    }
 }
