@@ -1,7 +1,6 @@
 package ca.uhn.fhir.jpa.starter;
 
 import java.util.Base64;
-import java.util.Iterator;
 
 import org.json.JSONObject;
 
