@@ -111,7 +111,7 @@ hapi:
 #    validation:
 #      requests_enabled: true
 #      responses_enabled: true
-#    binary_storage_enabled: true
+    binary_storage_enabled: true
 #    bulk_export_enabled: true
 #    subscription:
 #      resthook_enabled: false

@@ -50,6 +50,8 @@ import java.util.stream.Collectors;
 import ca.uhn.fhir.jpa.starter.CustomizedAuthorizationInterceptor;
 import ca.uhn.fhir.jpa.starter.CustomHeaderBasedPartitionInterceptor;
 
+import ca.uhn.fhir.jpa.binstore.BinaryAccessProvider;
+
 public class BaseJpaRestfulServer extends RestfulServer {
 
   @Autowired
@@ -105,6 +107,9 @@ public class BaseJpaRestfulServer extends RestfulServer {
 
   @Autowired(required = false)
   IRepositoryValidationInterceptorFactory factory;
+  
+  @Autowired
+  BinaryAccessProvider binaryAccessProvider;
 
   // These are set only if the features are enabled
   private CqlProviderLoader cqlProviderLoader;
@@ -390,5 +395,7 @@ public class BaseJpaRestfulServer extends RestfulServer {
     daoConfig.getModelConfig().setNormalizedQuantitySearchLevel(appProperties.getNormalized_quantity_search_level());
     
     registerInterceptor(new CustomizedAuthorizationInterceptor());
+
+    registerProviders(binaryAccessProvider);
   }
 }
