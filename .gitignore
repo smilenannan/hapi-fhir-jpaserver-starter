@@ -165,3 +165,6 @@ Temporary Items
 
 # Secret information
 config/
+
+# Helm Chart dependencies
+**/charts/*.tgz
