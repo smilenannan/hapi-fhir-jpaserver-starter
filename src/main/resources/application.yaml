@@ -1,11 +1,17 @@
+#spring:
+  #datasource:
+    #url: 'jdbc:h2:file:./target/database/h2'
+    ##url: jdbc:h2:mem:test_mem
+    #username: sa
+    #password: null
+    #driverClassName: org.h2.Driver
+    #max-active: 15
 spring:
   datasource:
-    url: 'jdbc:h2:file:./target/database/h2'
-    #url: jdbc:h2:mem:test_mem
-    username: sa
-    password: null
-    driverClassName: org.h2.Driver
-    max-active: 15
+    url: 'jdbc:mysql://localhost:3306/hapi'
+    username: root
+    password: 
+    driverClassName: com.mysql.jdbc.Driver
 
     # database connection pool size
     hikari:
