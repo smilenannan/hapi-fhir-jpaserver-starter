@@ -1,6 +1,8 @@
 package ca.uhn.fhir.jpa.starter;
 
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.Map;
 
 import org.json.JSONObject;
 
@@ -38,7 +40,11 @@ public class CustomHeaderBasedPartitionInterceptor {
 		JSONObject payload = new JSONObject(payloadString);
 		Integer partitionId = payload.optInt("group_id");
 		String resourceType = theRequestDetails.getResourceName();
-		if (resourceType.equals("CodeSystem")) {
+		Map<String, String[]> parameters = theRequestDetails.getParameters();
+		String [] type_parameter = parameters.get("type");
+		if (resourceType.equals("CodeSystem") ||
+		   (resourceType.equals("InsurancePlan") && type_parameter != null && Arrays.asList(type_parameter).contains("http://snomed.info/sct|224774000"))) {
+			System.out.println("here");
 			return RequestPartitionId.defaultPartition();
 		}
 		if (partitionId == 0) {
