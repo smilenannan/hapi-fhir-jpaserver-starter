@@ -64,6 +64,8 @@ import ca.uhn.fhir.jpa.starter.CustomHeaderBasedPartitionInterceptor;
 
 import ca.uhn.fhir.jpa.binstore.BinaryAccessProvider;
 
+import ca.uhn.fhir.jpa.starter.ResourceInterceptor;
+
 public class BaseJpaRestfulServer extends RestfulServer {
   private static final org.slf4j.Logger ourLog = org.slf4j.LoggerFactory.getLogger(BaseJpaRestfulServer.class);
 
@@ -398,5 +400,7 @@ public class BaseJpaRestfulServer extends RestfulServer {
     registerInterceptor(new CustomizedAuthorizationInterceptor());
 
     registerProviders(binaryAccessProvider);
+    
+    registerInterceptor(new ResourceInterceptor(myApplicationContext));
   }
 }
